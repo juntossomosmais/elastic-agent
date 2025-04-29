@@ -60,3 +60,7 @@ fleet.yml.lock
 fleet.yml.old
 pkg/component/fake/component/component
 internal/pkg/agent/install/testblocking/testblocking
+*.pem
+*.srl
+*.cnf
+.build_hash.txt

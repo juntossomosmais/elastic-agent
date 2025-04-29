@@ -1,15 +1,11 @@
-ARG GO_VERSION=1.24.2
-FROM circleci/golang:${GO_VERSION}
+ARG AGENT_VERSION=9.0.1
 
+FROM docker.elastic.co/elastic-agent/elastic-agent:${AGENT_VERSION}
 
-ARG TEST_RESULTS=/tmp/test-results
-
-RUN mkdir -p ${TEST_RESULTS} && mkdir -p ./code
-RUN go get github.com/magefile/mage
-
-WORKDIR ./code
-#COPY --chown=circleci:circleci . .
-COPY . .
-VOLUME "/tmp" "dev-tools/mage/build/distributions"
-USER root
-
+COPY build/elastic-agent /usr/share/elastic-agent/elastic-agent
+COPY build/elastic-agent.yml /usr/share/elastic-agent/elastic-agent.yml
+COPY .build_hash.txt /usr/share/elastic-agent/.build_hash.txt.new
+RUN mv /usr/share/elastic-agent/data/elastic-agent-$(cat /usr/share/elastic-agent/.build_hash.txt| cut -c 1-6) /usr/share/elastic-agent/data/elastic-agent-$(cat /usr/share/elastic-agent/.build_hash.txt.new| cut -c 1-6) && \
+  ln -s -f /usr/share/elastic-agent/data/elastic-agent-$(cat /usr/share/elastic-agent/.build_hash.txt.new| cut -c 1-6)/elastic-agent /usr/share/elastic-agent/elastic-agent && \
+  mv /usr/share/elastic-agent/.build_hash.txt /usr/share/elastic-agent/.build_hash.txt.old && \
+  mv /usr/share/elastic-agent/.build_hash.txt.new /usr/share/elastic-agent/.build_hash.txt

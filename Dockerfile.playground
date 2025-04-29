@@ -1,0 +1,12 @@
+ARG GO_VERSION=1.24.3-main-debian12
+ARG AGENT_VERSION=sha256-fadde3b4b84e786d69114212535e078c008e9a0619e105b7119a461d9b024a47
+
+FROM docker.elastic.co/beats-dev/golang-crossbuild:${GO_VERSION} as build
+RUN apt-get update && \
+    apt-get install -y git curl gcc libc-dev make bash && \
+    go install github.com/magefile/mage@latest
+RUN curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
+WORKDIR /elastic-agent/
+COPY go.mod go.sum ./
+RUN go mod download
+COPY . ./
