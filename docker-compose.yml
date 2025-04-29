@@ -1,5 +1,50 @@
-version: '3'
 services:
+  docker:
+    image: docker:latest
+    privileged: true
+    network_mode: host
+    ports:
+      - "2375-2376"
+    volumes:
+      - ./certs:/certs
+  playground:
+    # You can start the build by running:
+    # - docker compose run --entrypoint bash --rm playground
+    # - export PATH=$PATH:$GOPATH/bin && mage build
+    # The above command creates two files:
+    # - ./build/elastic-agent
+    # - ./build/elastic-agent.yml
+    # You can copy to the image `beats/elastic-agent`. Execute `ls -la` in the following container:
+    # - docker run -it --rm --entrypoint sh docker.elastic.co/beats/elastic-agent:sha256-fadde3b4b84e786d69114212535e078c008e9a0619e105b7119a461d9b024a47
+    # You can also run the build with:
+    # - mage crossBuild
+    # The original image:
+    # - docker run -it --rm --entrypoint sh docker.elastic.co/elastic-agent/elastic-agent:9.0.0
+    build:
+      context: .
+      dockerfile: Dockerfile.playground
+    depends_on:
+      docker:
+        condition: service_started
+    volumes:
+      - ./:/elastic-agent
+      - ./certs:/certs
+    privileged: true
+    network_mode: host
+    extra_hosts:
+      - "docker:127.0.0.1"
+    environment:
+      # Variables required to connect to the Docker daemon
+      # This is specially useful to publish containers to registry inside the container
+      - DOCKER_HOST=tcp://docker:2376
+      - DOCKER_TLS_VERIFY=1
+      - DOCKER_CERT_PATH=/certs/client
+  production-image:
+    # To build this image, you need to have the binary and its yaml in the build folder. If so, you can run:
+    # docker compose run --entrypoint sh --rm production-image
+    build:
+      context: .
+      dockerfile: Dockerfile
   testunit:
     build:
       context: .
