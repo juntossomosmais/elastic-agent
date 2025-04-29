@@ -36,8 +36,10 @@ import (
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/filterprocessor"
 	geoipprocessor "github.com/open-telemetry/opentelemetry-collector-contrib/processor/geoipprocessor"                 // for adding geographical metadata associated to an IP address
 	k8sattributesprocessor "github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor" // for adding k8s metadata
+	probabilisticsamplerprocessor "github.com/open-telemetry/opentelemetry-collector-contrib/processor/probabilisticsamplerprocessor"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor"
-	resourceprocessor "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourceprocessor"   // for modifying resource attributes
+	resourceprocessor "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourceprocessor" // for modifying resource attributes
+	tailsamplingprocessor "github.com/open-telemetry/opentelemetry-collector-contrib/processor/tailsamplingprocessor"
 	transformprocessor "github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor" // for OTTL processing on logs
 	"go.opentelemetry.io/collector/processor/batchprocessor"                                                    // for batching events
 	"go.opentelemetry.io/collector/processor/memorylimiterprocessor"
@@ -57,6 +59,7 @@ import (
 	otlphttpexporter "go.opentelemetry.io/collector/exporter/otlphttpexporter"
 
 	// Extensions
+	bearertokenauthextension "github.com/open-telemetry/opentelemetry-collector-contrib/extension/bearertokenauthextension"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension"
 	k8sobserver "github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer/k8sobserver"
 	pprofextension "github.com/open-telemetry/opentelemetry-collector-contrib/extension/pprofextension"
@@ -108,6 +111,8 @@ func components(extensionFactories ...extension.Factory) func() (otelcol.Factori
 			transformprocessor.NewFactory(),
 			filterprocessor.NewFactory(),
 			geoipprocessor.NewFactory(),
+			probabilisticsamplerprocessor.NewFactory(),
+			tailsamplingprocessor.NewFactory(),
 			k8sattributesprocessor.NewFactory(),
 			elasticinframetricsprocessor.NewFactory(),
 			resourcedetectionprocessor.NewFactory(),
@@ -149,6 +154,7 @@ func components(extensionFactories ...extension.Factory) func() (otelcol.Factori
 			healthcheckextension.NewFactory(),
 			pprofextension.NewFactory(),
 			k8sobserver.NewFactory(),
+			bearertokenauthextension.NewFactory(),
 		}
 		extensions = append(extensions, extensionFactories...)
 		factories.Extensions, err = otelcol.MakeFactoryMap[extension.Factory](extensions...)

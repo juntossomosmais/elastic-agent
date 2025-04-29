@@ -1191,6 +1191,8 @@ github.com/open-telemetry/opentelemetry-collector-contrib/exporter/loadbalancing
 github.com/open-telemetry/opentelemetry-collector-contrib/exporter/loadbalancingexporter v0.121.0/go.mod h1:yF5I4j3Dh3OAUkL4gwUe5GXy9clqYYPF9azQSkwLfNU=
 github.com/open-telemetry/opentelemetry-collector-contrib/exporter/prometheusremotewriteexporter v0.121.0 h1:QOGF8d9L2AkGMPbfsjzuCYNX8Fhi65ywSY8+jjhzg60=
 github.com/open-telemetry/opentelemetry-collector-contrib/exporter/prometheusremotewriteexporter v0.121.0/go.mod h1:IIaht98bLGTH1hMrlUCXa1OmTEZJHfSrYt4S0oLrFQg=
+github.com/open-telemetry/opentelemetry-collector-contrib/extension/bearertokenauthextension v0.121.0 h1:WJsYRxjhlwSYsT0Qi+UYZWlWGoVtbXoItCiCs1erViI=
+github.com/open-telemetry/opentelemetry-collector-contrib/extension/bearertokenauthextension v0.121.0/go.mod h1:LDyZETAko2NX9TMGaM5y+WN3B8btZHAPVA5temmvZ84=
 github.com/open-telemetry/opentelemetry-collector-contrib/extension/encoding v0.121.0 h1:h6wXea0uEsCcHq/cJ0C7Le3j6n9Lnu3oLTUGMo2aWIs=
 github.com/open-telemetry/opentelemetry-collector-contrib/extension/encoding v0.121.0/go.mod h1:hell2tmZ2EefEefmxrI/c3DcuCpzrutEarVI17VX9ZI=
 github.com/open-telemetry/opentelemetry-collector-contrib/extension/encoding/otlpencodingextension v0.121.0 h1:glv30htO+iy3ic1nYQdxrvxojzC0NlvRD2dTEkQ4nO4=
@@ -1273,10 +1275,14 @@ github.com/open-telemetry/opentelemetry-collector-contrib/processor/geoipprocess
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/geoipprocessor v0.121.0/go.mod h1:1luF+ObgKD4DTYEMNTmllwYTF0ZCR9yAZSXCP7nqGow=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor v0.121.0 h1:YYIleQkK+j/G0H3jg2d1yy1AT8F4jhHVaBiL8vD9lFI=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor v0.121.0/go.mod h1:jCQbdH+Ym+LHkvVCs2SIstUI5EZ87Vpwn/WXxJnnRcw=
+github.com/open-telemetry/opentelemetry-collector-contrib/processor/probabilisticsamplerprocessor v0.121.0 h1:gm6OOztLsmO96lTeKb1UdvVhT2U6eao+n5rOkmHSd90=
+github.com/open-telemetry/opentelemetry-collector-contrib/processor/probabilisticsamplerprocessor v0.121.0/go.mod h1:VOPsTjXAUjgkJ/mHiZ+FTR17pCs9zc6cZfy6LCBfRYo=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor v0.121.0 h1:bUWQen91YtejxiylszJZ4p9qyZMfTsGx0Zl0vPGhWJ4=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor v0.121.0/go.mod h1:irP1isDO5Qev5bGa+20gP1HNsh5ufd+LFdGse4u2/Mg=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourceprocessor v0.121.0 h1:loqF3gHytENLFAzvfhLE86ibUMm+H13+EdZID+YrZn4=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourceprocessor v0.121.0/go.mod h1:MT9ZLOqLy1MlPG0/6U3X9vJON9lJv5r30IrDvZkuUEk=
+github.com/open-telemetry/opentelemetry-collector-contrib/processor/tailsamplingprocessor v0.121.0 h1:CDMMmOdUF3EPvhNFBMfPrSMvqBp97FeATs/kdVnqHGc=
+github.com/open-telemetry/opentelemetry-collector-contrib/processor/tailsamplingprocessor v0.121.0/go.mod h1:qvnIa2vzFlLKsILRWHKubjHIWfWWRAiNZtXdaa/oSEc=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor v0.121.0 h1:DAQVswUa5PN9SGdYLAERfyRFgMK7s4THnM+46/yHfXI=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor v0.121.0/go.mod h1:BlchhI9lI8cSupDCt7qwTHbYcFTqqioc8BrvHEafsG0=
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/filelogreceiver v0.121.0 h1:/ApM2PuzX0gs9R5bHhAYVsDPxGJoWiSgSjU+vBP/ZeU=
